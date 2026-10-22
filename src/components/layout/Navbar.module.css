@@ -1,0 +1,151 @@
+.nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 50;
+  border-bottom: 1px solid transparent;
+  transition: background-color 0.3s, border-color 0.3s;
+}
+
+.scrolled {
+  background: rgba(6, 6, 11, 0.88);
+  border-bottom-color: var(--line);
+}
+
+.inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.logoMark {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  background: var(--yellow);
+  color: var(--bg);
+  font-size: 15px;
+  clip-path: polygon(0 0, 75% 0, 100% 25%, 100% 100%, 25% 100%, 0 75%);
+}
+
+.links {
+  display: flex;
+  gap: 32px;
+}
+
+.link {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: var(--text);
+}
+
+.idx {
+  font-size: 10px;
+  color: var(--yellow);
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.mobileCta,
+.burger {
+  display: none;
+}
+
+.progress {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100%;
+  background: linear-gradient(90deg, var(--magenta), var(--yellow));
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+@media (max-width: 860px) {
+  .desktopCta {
+    display: none;
+  }
+
+  .burger {
+    display: grid;
+    gap: 6px;
+    width: 40px;
+    height: 40px;
+    place-content: center;
+  }
+
+  .burger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--text);
+    transition: transform 0.3s var(--ease-out);
+  }
+
+  .burgerOpen span:first-child {
+    transform: translateY(4px) rotate(45deg);
+  }
+
+  .burgerOpen span:last-child {
+    transform: translateY(-4px) rotate(-45deg);
+  }
+
+  .links {
+    position: fixed;
+    inset: 64px 0 0;
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: var(--gutter);
+    background: var(--bg);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: opacity 0.3s, transform 0.3s var(--ease-out), visibility 0.3s;
+  }
+
+  .open {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+  }
+
+  .link {
+    font-family: var(--font-display);
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--text);
+  }
+
+  .mobileCta {
+    display: inline-flex;
+    align-self: flex-start;
+    margin-top: 12px;
+  }
+}

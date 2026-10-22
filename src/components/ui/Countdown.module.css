@@ -1,0 +1,44 @@
+.wrap {
+  display: flex;
+  gap: clamp(14px, 3vw, 28px);
+}
+
+.cell {
+  position: relative;
+  display: grid;
+  justify-items: center;
+  gap: 4px;
+  min-width: 2.4ch;
+}
+
+.value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(30px, 5vw, 52px);
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.label {
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sep {
+  position: absolute;
+  right: calc(-1 * clamp(10px, 2vw, 18px));
+  top: 0;
+  font-family: var(--font-display);
+  font-size: clamp(24px, 4vw, 40px);
+  line-height: 1.1;
+  color: var(--magenta);
+  animation: pulse 1s steps(2) infinite;
+}
+
+@keyframes pulse {
+  50% {
+    opacity: 0.2;
+  }
+}

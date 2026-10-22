@@ -1,0 +1,83 @@
+.cta {
+  position: relative;
+  min-height: 110svh;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background: radial-gradient(50% 50% at 50% 50%, rgba(255, 46, 136, 0.14), transparent 70%);
+}
+
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  perspective: 600px;
+  perspective-origin: 50% 50%;
+}
+
+.tunnel {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+}
+
+.frame {
+  --fw: min(84vw, 900px);
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: var(--fw);
+  height: calc(var(--fw) * 9 / 16);
+  border: 2px solid rgba(0, 229, 255, 0.45);
+  transform: translateZ(var(--z));
+}
+
+.frame:nth-child(3n + 2) {
+  border-color: rgba(255, 46, 136, 0.45);
+}
+
+.frame:nth-child(4n) {
+  border-color: rgba(247, 230, 0, 0.4);
+}
+
+/* Chamfer marks on each frame */
+.frame::before,
+.frame::after {
+  content: "";
+  position: absolute;
+  width: 40px;
+  height: 2px;
+  background: currentColor;
+  color: var(--yellow);
+}
+
+.frame::before {
+  top: -2px;
+  left: 10%;
+}
+
+.frame::after {
+  bottom: -2px;
+  right: 10%;
+}
+
+.content {
+  display: grid;
+  justify-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+.title {
+  font-size: clamp(64px, 15vw, 200px);
+  color: var(--text);
+  text-shadow: 0 0 60px rgba(255, 46, 136, 0.35);
+}
+
+.ctas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+}

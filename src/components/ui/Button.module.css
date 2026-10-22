@@ -1,0 +1,88 @@
+.btn {
+  --c: 10px;
+  --shape: polygon(0 0, calc(100% - var(--c)) 0, 100% var(--c), 100% 100%, var(--c) 100%, 0 calc(100% - var(--c)));
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  clip-path: var(--shape);
+  isolation: isolate;
+  transition: transform 0.25s var(--ease-out);
+}
+
+.md {
+  padding: 16px 26px;
+  font-size: 14px;
+}
+
+.sm {
+  padding: 10px 18px;
+  font-size: 12px;
+  --c: 8px;
+}
+
+.label,
+.arrow {
+  position: relative;
+  z-index: 1;
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.25s var(--ease-out);
+}
+
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* Primary: solid yellow, magenta wipe on hover */
+.primary {
+  background: var(--yellow);
+  color: var(--bg);
+}
+
+.primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--magenta);
+  transform: translateX(-101%);
+  transition: transform 0.35s var(--ease-out);
+}
+
+.primary:hover::before {
+  transform: none;
+}
+
+.primary:hover {
+  color: var(--text);
+}
+
+/* Ghost: 1px cyan chamfered border via inset pseudo-element */
+.ghost {
+  background: var(--cyan);
+  color: var(--cyan);
+}
+
+.ghost::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  background: var(--bg);
+  clip-path: var(--shape);
+  transition: opacity 0.25s;
+}
+
+.ghost:hover {
+  color: var(--bg);
+}
+
+.ghost:hover::before {
+  opacity: 0;
+}
