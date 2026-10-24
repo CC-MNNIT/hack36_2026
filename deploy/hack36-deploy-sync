@@ -1,0 +1,20 @@
+#!/bin/bash
+# Publish the static Next.js export into the nginx web root for hack36.in.
+# Root-owned and called passwordless from deploy.sh; it refuses to touch
+# anything unless the build really is there, so a failed deploy can never
+# blank the live site.
+set -e
+WEB_ROOT="/var/www/hack36.in/html"
+SRC="/home/sac/repos/cc_club_mnnit/hack36_2026/out"
+
+if [ ! -f "$SRC/index.html" ]; then
+  echo "out/index.html missing - refusing to touch the web root" >&2
+  exit 1
+fi
+
+mkdir -p "$WEB_ROOT"
+rm -rf "${WEB_ROOT:?}"/*
+cp -r "$SRC"/. "$WEB_ROOT"/
+
+chown -R www-data:www-data "$WEB_ROOT"
+chmod -R 755 "$WEB_ROOT"

@@ -6,7 +6,7 @@ Next.js 16 (App Router, JavaScript) · GSAP + ScrollTrigger · Lenis smooth scro
 ```bash
 npm install
 npm run dev     # http://localhost:3000
-npm run build && npm start
+npm run build   # static export -> out/
 ```
 
 ## Editing content
@@ -18,6 +18,31 @@ Items marked `TODO` are placeholders. Set them before launch:
 - `tracks`, `timeline`
 - `prizes[].amount` (while `null`, the card shows an animated "encrypted" value)
 - `sponsors` (currently last year's partners)
+
+## Deployment
+
+The site is a static export (`output: "export"`), served by nginx at
+`hack36.in`. Nothing runs server-side: no Node process, no port, no service.
+
+On the deploy host, once:
+
+```bash
+git clone https://github.com/CC-MNNIT/hack36_2026.git ~/repos/cc_club_mnnit/hack36_2026
+sudo install -m 755 deploy/hack36-deploy-sync /usr/local/bin/
+sudo install -m 440 deploy/hack36-deploy.sudoers /etc/sudoers.d/hack36-deploy
+sudo visudo -c
+```
+
+Then every deploy is:
+
+```bash
+bash deploy.sh
+```
+
+which pulls `main`, runs `npm ci && npm run build` inside `shell.nix`
+(Node 22; the host Node is too old for Next 16), checks that `out/index.html`
+exists, and publishes `out/` to `/var/www/hack36.in/html` through
+`hack36-deploy-sync`. The nginx vhost is kept in `deploy/hack36.in.conf`.
 
 ## Structure
 

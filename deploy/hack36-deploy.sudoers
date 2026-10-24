@@ -1,0 +1,1 @@
+sac ALL=(root) NOPASSWD: /usr/local/bin/hack36-deploy-sync
